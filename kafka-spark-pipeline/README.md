@@ -26,7 +26,53 @@ cleaned_data.csv
 
 ---
 
-## Prerequisites
+## Option A: Docker Compose (Recommended)
+
+The easiest way to run the full pipeline. Docker Compose spins up **everything** (Zookeeper, Kafka, Elasticsearch, Kibana) in containers.
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
+
+### Quick Start
+
+```powershell
+cd "c:\hpdp project\kafka-spark-pipeline"
+
+# 1. Start all infrastructure services
+docker-compose up -d zookeeper kafka elasticsearch kibana
+
+# 2. Wait ~30 seconds for services to become healthy, then check
+docker-compose ps
+
+# 3. Start the Spark Streaming consumer
+docker-compose run spark-streaming
+
+# 4. In a NEW terminal — start the Kafka Producer
+docker-compose run kafka-producer
+```
+
+### Access Points
+
+| Service | URL |
+|---|---|
+| Elasticsearch | http://localhost:9200 |
+| Kibana | http://localhost:5601 |
+| Kafka (external) | localhost:9092 |
+
+### Teardown
+
+```powershell
+docker-compose down -v   # Stops containers and removes volumes
+```
+
+---
+
+## Option B: Manual Installation
+
+If you prefer to run each service locally without Docker, follow the steps below.
+
+### Prerequisites
 
 | Software | Version | Download |
 |---|---|---|
@@ -219,6 +265,9 @@ kafka-spark-pipeline/
 ├── config.py              # Central configuration (Kafka, Spark, ES settings)
 ├── kafka_producer.py      # Kafka producer — streams CSV rows to Kafka
 ├── spark_streaming.py     # Spark consumer — predicts sentiment, writes to ES
+├── docker-compose.yml     # Docker Compose for full infrastructure
+├── Dockerfile             # Container image for the pipeline app
+├── requirements.txt       # Pinned Python dependencies
 ├── logs/                  # Auto-generated logs and metrics
 │   ├── .gitkeep
 │   ├── producer_log.txt   # (generated at runtime)

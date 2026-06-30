@@ -1,0 +1,75 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# ========================
+# Jupyter Notebooks
+# ========================
+.ipynb_checkpoints/
+
+# ========================
+# Models (large binary files)
+# ========================
+# Uncomment the line below if models should NOT be tracked in Git:
+# models/*.pkl
+
+# ========================
+# Data (large CSV files)
+# ========================
+# Uncomment the lines below if data should NOT be tracked in Git:
+# data/*.csv
+# data/raw_data/
+
+# ========================
+# Kafka / Spark / Streaming
+# ========================
+kafka-spark-pipeline/logs/*.txt
+kafka-spark-pipeline/logs/checkpoints/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# ========================
+# Elasticsearch
+# ========================
+elasticsearch-*/
+
+# ========================
+# IDE / Editor
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ========================
+# OS files
+# ========================
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ========================
+# Java / Spark JARs
+# ========================
+*.jar
+*.class
+ivy2/
+.ivy2/

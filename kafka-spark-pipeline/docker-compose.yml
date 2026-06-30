@@ -132,10 +132,7 @@ services:
         condition: service_healthy
       elasticsearch:
         condition: service_healthy
-    command: >
-      spark-submit
-        --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.elasticsearch:elasticsearch-spark-30_2.12:8.14.0
-        spark_streaming.py
+    command: ["python", "spark_streaming.py"]
     volumes:
       - ./logs:/app/logs
     environment:
